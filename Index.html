@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quest: The Code Kingdom Adventure by SSA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .tutorial, .challenge, .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .hidden {
+            display: none;
+        }
+        .feedback.correct {
+            color: green;
+        }
+        .feedback.incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to HTML Quest: The Code Kingdom Adventure</h1>
+        <div class="tutorial">
+            <h2>Tutorial: Creating a Simple Table</h2>
+            <p>In this tutorial, you'll learn how to create a basic HTML table.</p>
+            <pre>
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Type&lt;/th&gt;
+        &lt;th&gt;Rarity&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Mandrake Root&lt;/td&gt;
+        &lt;td&gt;Herb&lt;/td&gt;
+        &lt;td&gt;Rare&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Phoenix Feather&lt;/td&gt;
+        &lt;td&gt;Magical&lt;/td&gt;
+        &lt;td&gt;Very Rare&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+            </pre>
+            <button onclick="startChallenge()">Start Challenge</button>
+        </div>
+        
+        <div class="challenge hidden">
+            <h2>Challenge: Build the Potion Inventory Table</h2>
+            <p>Use the template provided to create a table displaying the potion ingredients.</p>
+            <textarea id="codeInput" rows="10" cols="50"></textarea><br>
+            <button onclick="checkCode()">Submit</button>
+        </div>
+        
+        <div class="feedback hidden">
+            <h2>Feedback</h2>
+            <p id="feedbackText"></p>
+        </div>
+    </div>
+
+    <script>
+        function startChallenge() {
+            document.querySelector('.tutorial').classList.add('hidden');
+            document.querySelector('.challenge').classList.remove('hidden');
+        }
+
+        function checkCode() {
+            const codeInput = document.getElementById('codeInput').value;
+            const correctCode = `
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Rarity</th>
+    </tr>
+    <tr>
+        <td>Mandrake Root</td>
+        <td>Herb</td>
+        <td>Rare</td>
+    </tr>
+    <tr>
+        <td>Phoenix Feather</td>
+        <td>Magical</td>
+        <td>Very Rare</td>
+    </tr>
+</table>
+`.trim();
+
+            const feedbackText = document.getElementById('feedbackText');
+            if (codeInput.trim() === correctCode) {
+                feedbackText.innerHTML = "Great job! You've built the table correctly.";
+                feedbackText.classList.add('correct');
+                feedbackText.classList.remove('incorrect');
+            } else {
+                feedbackText.innerHTML = "Hmm, something's not quite right. Check your code and try again.";
+                feedbackText.classList.add('incorrect');
+                feedbackText.classList.remove('correct');
+            }
+
+            document.querySelector('.feedback').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
